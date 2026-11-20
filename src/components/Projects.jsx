@@ -5,9 +5,15 @@ export default function Projects({ projects, onOpen }) {
     <Section id="projects" index="03" title="프로젝트" desc="카드를 누르면 설계, 트러블슈팅, 화면별 구현 내용을 볼 수 있습니다.">
       <div className="projects">
         {projects.map((p) => (
-          <button key={p.id} type="button" className="project-card" onClick={() => onOpen(p.id)}>
+          <button
+            key={p.id}
+            type="button"
+            className={`project-card ${p.device === 'phone' ? 'project-card--phone' : ''}`}
+            onClick={() => onOpen(p.id)}
+          >
             <div className="project-card__thumb">
               <img src={p.cover} alt={`${p.name} 화면`} loading="lazy" />
+              {p.highlight && <span className="badge badge--launch project-card__ribbon">{p.highlight}</span>}
             </div>
             <div className="project-card__body">
               <div className="project-card__meta">
@@ -19,6 +25,7 @@ export default function Projects({ projects, onOpen }) {
                 {p.name} <small>{p.subtitle}</small>
               </h3>
               <p>{p.summary}</p>
+              {p.facts && <p className="project-card__facts">{p.facts.join(' · ')}</p>}
               <p className="project-card__role">
                 <strong>담당</strong> {p.myRole}
               </p>

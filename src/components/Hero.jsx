@@ -25,7 +25,7 @@ export default function Hero() {
         <dl className="hero__facts">
           <div>
             <dt>Projects</dt>
-            <dd>팀 프로젝트 2건</dd>
+            <dd>프로젝트 3건 · 출시 앱 1개</dd>
           </div>
           <div>
             <dt>Certificates</dt>

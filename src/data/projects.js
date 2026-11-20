@@ -3,6 +3,7 @@
 
 const khedu = (file) => `/images/khedu/${file}`
 const khworks = (file) => `/images/khworks/${file}`
+const ounlog = (file) => `/images/ounlog/${file}`
 
 export const projects = [
   {
@@ -370,5 +371,264 @@ export const projects = [
     ],
     retrospective:
       '처음으로 기획부터 구현까지 팀 개발 전 과정에 참여했습니다. 아쉬웠던 점은 모바일 환경을 고려하지 못한 것과 팀원 간 코드 작성 방식이 통일되지 않은 것이었습니다. 이를 계기로 React의 컴포넌트 기반 구조와 반응형 디자인을 학습했고, 파이널 프로젝트에서는 프론트엔드와 백엔드를 분리해 화면 구성과 코드 스타일의 일관성을 보완했습니다.',
+  },
+  {
+    id: 'ounlog',
+    label: 'Side Project',
+    name: '오운로그 (OUNLOG)',
+    subtitle: '세트 체크로 쌓는 운동 기록 앱',
+    period: '2026.10.21 – 진행 중',
+    team: '2명 (기획 1 · 개발 1)',
+    cover: ounlog('home-calendar.webp'),
+    // 세로형 앱 스크린샷용 레이아웃 (카드 썸네일 · 화면별 구현)
+    device: 'phone',
+    // 카드와 상세 상단에 강조 배지로 표시
+    highlight: 'App Store 출시',
+    summary:
+      '헬스장에서 세트를 체크하며 운동을 기록하는 iOS·Android 네이티브 앱입니다. 기획자 1명과 함께 만들었고, 개발은 Claude Code를 주 도구로 한 AI 주도 개발(바이브 코딩)로 진행해 App Store에 출시했습니다.',
+    myRole: '앱 개발 전반 (설계 문서 · iOS · Android · Firebase · 테스트 · 출시)',
+    facts: ['커밋 192개', 'PR 78개', '단위 테스트 166개'],
+    stack: [
+      'Swift', 'SwiftUI', 'Kotlin', 'Jetpack Compose',
+      'Firebase Auth', 'Cloud Firestore', 'Cloud Storage', 'Claude Code', 'Codex',
+    ],
+    roles: [
+      '화면 설계서 · 데이터 모델 문서 · 기술 결정 기록(ADR) 작성',
+      'iOS 앱 구현 (Swift · SwiftUI)',
+      'Android 앱 구현 (Kotlin · Jetpack Compose)',
+      'Firebase 인증 · Firestore · Storage 구성과 오프라인 저장 구조 설계',
+      '단위 테스트 166개 작성, TestFlight 피드백 반영, App Store 심사 · 출시',
+    ],
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/kr/app/%EC%98%A4%EC%9A%B4%EB%A1%9C%EA%B7%B8/id6805850216' },
+    ],
+    // (1) AI 활용 방식
+    aiWorkflow: {
+      title: 'AI 활용 방식',
+      tools: [
+        {
+          name: 'Claude Code',
+          role: '주 개발 도구',
+          primary: true,
+          items: [
+            '기획서 · 화면 설계서 · 데이터 모델 문서 · 기술 결정 기록(ADR) 작성',
+            'iOS 앱 구현 후, 같은 설계서 · 같은 Firestore 구조로 Android 앱을 0~8단계로 나눠 구현',
+            '단위 테스트 · 출시 문서 · 심사 대응',
+          ],
+        },
+        {
+          name: 'Codex',
+          role: '디자인 보조',
+          items: ['현재 코드를 읽고 온보딩 · 로그인 · 공유 카드 시안 제작', '앱 마스코트 제작'],
+        },
+        {
+          name: 'ChatGPT',
+          role: '이미지',
+          items: ['기본 종목 99개의 운동 그림 생성', '변환은 스크립트로 처리'],
+        },
+      ],
+      workflow: ['기획서', '화면 설계서', '도메인 모델', '기능 1개 = 브랜치 1개 = PR 1개'],
+      principles: [
+        {
+          title: '문서가 먼저, 코드는 나중',
+          body: '설계서와 다르면 설계서부터 고치고 구현합니다. 이 규칙을 CLAUDE.md에 명시했습니다.',
+        },
+        {
+          title: '작게 나눠 PR로 검증',
+          body: '기능 하나를 브랜치 하나, PR 하나로 나누고 빌드와 테스트를 통과한 뒤에만 머지했습니다. Android도 0~8단계로 나눠 단계마다 PR로 합쳤습니다.',
+        },
+        {
+          title: '두 플랫폼, 하나의 데이터 모델',
+          body: 'iOS와 Android가 같은 데이터 모델 문서와 같은 Firestore 구조를 따르고, 설계서에는 플랫폼별 차이만 따로 적었습니다.',
+        },
+      ],
+      images: [
+        {
+          src: ounlog('design-spec.webp'),
+          alt: '화면 설계서',
+          caption: '화면 설계서 — 구현 전에 먼저 작성하고, 구현이 달라지면 설계서부터 고쳤습니다.',
+        },
+        {
+          src: ounlog('design-overview.webp'),
+          alt: '화면별 설계서',
+          caption: '화면별 설계서 — 시안과 설명을 함께 관리',
+        },
+      ],
+    },
+    // (2) 핵심 기능 흐름
+    coreFlow: {
+      title: '핵심 기능 흐름',
+      images: [
+        { src: ounlog('set-log.webp'), caption: '세트 체크' },
+        { src: ounlog('rest-timer.webp'), caption: '휴식 타이머' },
+        { src: ounlog('rest-alert.webp'), caption: '앱을 닫아도 알림' },
+      ],
+      steps: [
+        {
+          title: '세트 체크 → 휴식 타이머 → 앱을 닫아도 알림',
+          body: '남은 시간을 1초씩 빼지 않고 "끝나는 시각 − 지금"으로 계산해 백그라운드에서도 어긋나지 않습니다. 휴식이 시작되는 순간 OS에 로컬 알림을 예약하고, −10초 · +10초 · 건너뛰기를 누르면 알림을 다시 예약합니다.',
+          tag: '끝나는 시각 − 지금 · 로컬 알림 재예약',
+        },
+        {
+          title: '운동 추가 시 지난 기록 자동 입력',
+          body: '해당 종목이 있던 가장 최근 날의 무게 · 횟수를 복사해 바로 채워 넣습니다.',
+          tag: 'exerciseIds array-contains + 날짜 내림차순 + limit 1 · 복합 색인',
+        },
+        {
+          title: '캘린더 표시',
+          body: '완료 · 전체 세트 수를 저장할 때 미리 계산해 문서에 같이 저장합니다. 캘린더는 세트 배열을 풀지 않고 이 값으로 배지를 표시합니다.',
+          tag: 'completedSetCount · totalSetCount',
+        },
+      ],
+    },
+    // (3) 데이터 · 동기화 구조 (KHEDU의 ERD 자리)
+    dataModel: {
+      title: '데이터 · 동기화 구조',
+      // [경로, 설명] — 설명 열은 자동으로 정렬됩니다.
+      tree: [
+        ['users/{uid}', ''],
+        [' ├─ workouts/{YYYY-MM-DD}', '하루 = 문서 1개'],
+        [' │   ├─ groups[] → entries[] → sets[]', ''],
+        [' │   ├─ exerciseIds[]', '지난 기록 검색용'],
+        [' │   └─ completedSetCount · totalSetCount', '캘린더 배지용'],
+        [' ├─ exercises/{uuid}', '커스텀 종목'],
+        [' ├─ exercisePrefs/{id}', '종목별 즐겨찾기 · 단위'],
+        [' └─ dayPhotos/{YYYY-MM-DD}', '그날 사진'],
+      ],
+      points: [
+        {
+          title: '날짜를 문서 ID로',
+          body: '기기가 여러 대여도 같은 날짜는 같은 문서를 가리켜, 하루 기록이 갈라지지 않습니다.',
+          tag: '하루 기록 = 읽기 1번',
+        },
+        {
+          title: '세트는 하위 컬렉션 대신 배열',
+          body: '하루 기록을 문서 하나로 읽고 써서 읽기 · 쓰기 비용을 줄였습니다.',
+          tag: '읽기·쓰기 비용 절감',
+        },
+        {
+          title: '무게는 입력값 · 단위 그대로',
+          body: '입력한 값과 단위를 그대로 저장하고, 화면에 표시할 때만 kg · lb로 환산합니다.',
+          tag: '환산 오차 없음',
+        },
+        {
+          title: '이름 · 몸무게는 스냅샷',
+          body: '종목 이름과 당시 몸무게를 기록에 함께 저장해, 나중에 바뀌어도 그날 기록은 그대로 남습니다.',
+          tag: '지난 기록 보존',
+        },
+      ],
+      login: {
+        title: '로그인 흐름',
+        image: ounlog('login.webp'),
+        steps: [
+          { label: '첫 실행', body: '익명 로그인으로 바로 시작' },
+          { label: '게스트', body: '게스트도 같은 데이터 구조로 저장' },
+          {
+            label: '계정 연결',
+            body: 'Apple · Google 로그인 시 익명 계정에 연결(link) — uid가 그대로라 옮길 데이터가 없음',
+          },
+        ],
+      },
+      offline: {
+        title: '오프라인',
+        body: 'SwiftData + 자체 동기화를 검토했지만 충돌 처리 부담이 커서, Firestore 오프라인 캐시 하나로 결정했습니다. 쓰기는 서버 응답을 기다리지 않아 지하 헬스장에서도 멈추지 않습니다.',
+        tag: 'ADR · Firestore 오프라인 캐시',
+      },
+    },
+    troubleshooting: [
+      {
+        title: '종목 화면에 들어갈 때마다 로딩이 걸리던 문제',
+        problem:
+          '홈에서 종목을 누를 때마다 빈 화면과 로딩이 잠깐 보인 뒤 세트 표가 나타났습니다. 운동 중 종목을 자주 오가는 앱이라 체감이 컸습니다.',
+        cause:
+          '홈이 이미 가진 그날 기록·지난 기록을 종목 화면이 다시 서버에서 읽었고, 설정 → 종목 정보 → 그날 기록 → 지난 기록을 하나씩 순서대로 기다려 서버 왕복 시간이 그대로 쌓였습니다. 종목 정보와 사진도 화면마다 새로 받았습니다.',
+        solution:
+          '홈 데이터를 넘겨 바로 그리고 최신 값은 뒤에서 교체(읽는 사이 사용자가 고친 값은 덮어쓰지 않도록 변경 횟수 비교), 상관없는 읽기는 async let으로 동시에 요청, 종목 정보는 앱 실행 시 한 번만 읽고 중복 요청은 하나로 합침, 돌아올 때도 다시 읽지 않도록 변경 내용을 홈에 바로 반영했습니다.',
+        result:
+          '종목 화면이 기다림 없이 바로 열립니다. 로딩 동작 테스트 14개를 추가해 검증했고, 홈·공유·설정 화면에도 같은 방식을 적용했습니다.',
+      },
+      {
+        title: 'App Store 심사 거절 (1.1.0)',
+        problem: '추적 허용(ATT) 창을 심사자가 찾지 못해 가이드라인 2.1로 거절됐습니다.',
+        cause: 'ATT 창을 종목 수행 화면에서만 띄우고 있었습니다.',
+        solution: '앱이 활성화될 때 바로 띄우도록 옮기고, 못 띄우면 다음 활성화 때 다시 묻도록 했습니다.',
+        result: '수정 빌드로 재심사를 통과했습니다.',
+      },
+    ],
+    // (5) 검증
+    verification: {
+      title: '검증',
+      summary: ounlog('test-summary.webp'),
+      summaryCaption: 'iOS 100/100 · Android 66/66 · 실패 0',
+      detail: ounlog('test-detail.webp'),
+      items: [
+        { title: '가짜 저장소로 화면 로직 테스트', body: '화면 로직은 가짜 저장소를 넣어 Firebase 없이 테스트합니다.' },
+        { title: '빌드 · 테스트 통과 후 PR', body: '빌드와 테스트가 통과해야 PR을 올리는 규칙을 지켰습니다.' },
+        { title: 'TestFlight 실기기 피드백', body: 'TestFlight로 실제 기기에서 받은 피드백을 반영했습니다.' },
+      ],
+    },
+    features: [
+      {
+        group: '홈 · 기록',
+        screens: [
+          {
+            title: '월 캘린더',
+            images: [ounlog('home-calendar.webp')],
+            body: '운동한 날에 완료 배지와 N세트를 표시해, 한 달의 운동 기록을 한눈에 확인합니다.',
+          },
+          {
+            title: '세트 체크',
+            images: [ounlog('set-log.webp')],
+            body: '세트마다 무게 · 횟수를 입력하고 체크해 기록합니다. 단위는 종목별로 kg · lb를 선택할 수 있습니다.',
+          },
+        ],
+      },
+      {
+        group: '휴식 · 알림',
+        screens: [
+          {
+            title: '휴식 타이머',
+            images: [ounlog('rest-timer.webp')],
+            body: '세트를 체크하면 휴식 타이머가 시작되고, −10초 · +10초 · 건너뛰기로 조절합니다.',
+          },
+          {
+            title: '휴식 종료 알림',
+            images: [ounlog('rest-alert.webp')],
+            body: '앱을 닫아도 휴식이 끝나면 알림이 옵니다.',
+          },
+        ],
+      },
+      {
+        group: '종목 · 공유',
+        screens: [
+          {
+            title: '종목 선택',
+            images: [ounlog('exercise-picker.webp')],
+            body: '기본 종목 99개를 부위 · 기구 필터와 초성 검색으로 찾습니다.',
+          },
+          {
+            title: '공유 카드',
+            images: [ounlog('share-card.webp')],
+            body: '그날 운동을 인스타그램 스토리 · 피드용 공유 카드로 만듭니다.',
+          },
+        ],
+      },
+    ],
+    retrospective: {
+      items: [
+        {
+          title: '문서가 먼저, 코드는 나중',
+          body: 'AI가 코드를 빠르게 만들수록 기준이 되는 설계서가 없으면 기획과 화면이 쉽게 어긋난다는 것을 배웠습니다.',
+        },
+        {
+          title: '작게 나누고 테스트로 확인',
+          body: '기능 하나를 PR 하나로 나누고 테스트 통과 후 머지해, AI가 만든 코드도 검증할 수 있는 단위로 관리했습니다.',
+        },
+        {
+          title: '출시 후에 배우는 것',
+          body: '심사 거절과 TestFlight 피드백을 거치며, 실제 사용자 환경에서만 드러나는 문제를 처리하는 경험을 했습니다.',
+        },
+      ],
+    },
   },
 ]

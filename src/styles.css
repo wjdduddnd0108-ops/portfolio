@@ -330,6 +330,83 @@ h1, h2, h3, h4, p { margin: 0; }
 .retro__item p { font-size: 14px; color: var(--muted); }
 .retro__note { margin-top: 14px; font-size: 13px; color: var(--muted); }
 
+/* ===== 앱 프로젝트 (세로형 스크린샷 · 추가 섹션) ===== */
+.badge--launch { background: var(--warm); color: #fff; }
+.detail__badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip--stat { background: var(--accent-soft); border-color: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-weight: 700; }
+.detail__stats { margin-top: 18px; }
+
+.project-card__thumb { position: relative; }
+.project-card__ribbon { position: absolute; top: 16px; left: 16px; z-index: 1; padding: 6px 14px; font-size: 13px; box-shadow: var(--shadow); }
+.project-card .project-card__facts { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); }
+.project-card--phone .project-card__thumb {
+  display: flex; align-items: center; justify-content: center; padding: 32px 24px;
+  background: var(--accent-soft);
+}
+.project-card--phone .project-card__thumb img {
+  width: auto; height: 100%; max-height: 460px; max-width: 100%; object-fit: contain;
+  border-radius: 18px; border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+
+.detail__sub { margin-top: 32px; }
+/* 가로형(설계서) 1.6 : 세로형(화면별 설계서) 1 비율로 나란히 */
+.detail__figures { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; align-items: start; margin-top: 28px; }
+.detail__figure { margin: 0; }
+.erd--light { background: var(--surface); border: 1px solid var(--line); }
+.erd__points--2 { grid-template-columns: 1fr 1fr; }
+.erd__point--primary { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.point__list { margin: 0; padding-left: 16px; font-size: 14px; color: var(--muted); }
+.point__list li { padding: 2px 0; }
+.point__list li::marker { color: var(--accent); }
+.ai-tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+.flow--4 { grid-template-columns: repeat(4, 1fr); }
+.flow__strong { font-weight: 700; }
+.flow--col { grid-template-columns: 1fr; gap: 30px; }
+.flow--col .flow__step:not(:last-child)::after {
+  content: '↓'; top: auto; right: auto; bottom: -27px; left: 50%; transform: translateX(-50%);
+}
+
+.phone-shot {
+  display: block; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  background: var(--surface); transition: border-color 0.15s;
+}
+.phone-shot:hover { border-color: var(--accent); }
+.phone-shot img { width: 100%; }
+.phone-strip {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 200px)); justify-content: center; gap: 44px;
+  list-style: none; margin: 0 0 20px; padding: 0;
+}
+.phone-strip li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.phone-strip li:not(:last-child)::after {
+  content: '→'; position: absolute; top: 45%; right: -30px; font-size: 18px; font-weight: 700; color: var(--accent);
+}
+.phone-strip span { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+.tree {
+  display: grid; grid-template-columns: max-content auto; column-gap: 32px; overflow-x: auto;
+  padding: 22px 24px; background: var(--accent-ink); color: #fff; border-radius: var(--radius);
+  font-family: var(--mono); font-size: 13.5px; line-height: 1.8;
+}
+.tree__row { display: contents; }
+.tree__path { white-space: pre; }
+.tree__note { color: #e9b07f; white-space: nowrap; }
+
+.split { display: grid; grid-template-columns: 220px 1fr; gap: 28px; align-items: start; }
+.split__body { display: grid; gap: 16px; }
+
+.verify__caption { font-family: var(--mono); font-weight: 700; color: var(--accent); }
+.verify { display: grid; grid-template-columns: 1fr 300px; gap: 16px; margin-top: 16px; align-items: start; }
+.verify__list { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.verify__detail { margin: 0; display: grid; gap: 8px; }
+.verify__detail .screen__main { display: block; width: 100%; }
+.verify__detail img { width: 100%; }
+.verify__detail figcaption { font-size: 13px; color: var(--muted); }
+
+.modal__panel--phone .screens { grid-template-columns: 1fr 1fr; }
+.modal__panel--phone .screen { grid-template-columns: 200px 1fr; gap: 20px; }
+.modal__panel--phone .screen__main img { max-height: none; object-fit: contain; }
+
 /* ===== 라이트박스 ===== */
 .lightbox {
   position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center;
@@ -357,6 +434,12 @@ h1, h2, h3, h4, p { margin: 0; }
   .detail__grid, .credentials { grid-template-columns: 1fr; gap: 32px; }
   .modal__panel { padding: 36px 24px; }
   .modal__close { margin: -18px -10px 0 0; }
+  .ai-tools, .erd__points--2, .verify, .detail__figures { grid-template-columns: 1fr; }
+  .flow--4 { grid-template-columns: 1fr; gap: 30px; }
+  .flow--4 .flow__step:not(:last-child)::after { content: '↓'; top: auto; right: auto; bottom: -27px; left: 50%; transform: translateX(-50%); }
+  .project-card--phone .project-card__thumb { aspect-ratio: auto; height: 360px; }
+  .modal__panel--phone .screens { grid-template-columns: 1fr; }
+  .verify__detail { max-width: 360px; }
 }
 @media (max-width: 640px) {
   .container { padding: 0 16px; }
@@ -383,6 +466,13 @@ h1, h2, h3, h4, p { margin: 0; }
   .modal__panel { border-radius: 0; min-height: 100%; padding: 28px 16px 48px; }
   .modal__close { margin: -8px 0 0 0; }
   .lightbox { padding: 56px 8px; }
+  .project-card--phone .project-card__thumb { height: 300px; padding: 20px; }
+  .phone-strip { gap: 18px; }
+  .phone-strip li:not(:last-child)::after { right: -15px; font-size: 14px; }
+  .split { grid-template-columns: 1fr; }
+  .split > .phone-shot { max-width: 200px; justify-self: center; }
+  .modal__panel--phone .screen { grid-template-columns: 130px 1fr; gap: 14px; }
+  .tree { font-size: 12.5px; padding: 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

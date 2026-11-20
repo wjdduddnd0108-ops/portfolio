@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { AiWorkflow, CoreFlow, DataModel, Verification } from './DetailSections.jsx'
 
 export default function ProjectModal({ project, onClose, onZoom }) {
   const [tab, setTab] = useState(0)
@@ -19,14 +20,20 @@ export default function ProjectModal({ project, onClose, onZoom }) {
 
   return (
     <div className="modal" role="dialog" aria-modal="true" aria-label={`${p.name} 상세`} onClick={onClose}>
-      <div className="modal__panel" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`modal__panel ${p.device === 'phone' ? 'modal__panel--phone' : ''}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button type="button" className="modal__close" onClick={onClose} aria-label="닫기">
           ✕
         </button>
 
         {/* 개요 */}
         <header className="detail__head">
-          <span className="badge">{p.label}</span>
+          <div className="detail__badges">
+            <span className="badge">{p.label}</span>
+            {p.highlight && <span className="badge badge--launch">{p.highlight}</span>}
+          </div>
           <h2>
             {p.name} <small>{p.subtitle}</small>
           </h2>
@@ -45,6 +52,15 @@ export default function ProjectModal({ project, onClose, onZoom }) {
               <dd>{p.myRole}</dd>
             </div>
           </dl>
+          {p.facts && (
+            <ul className="chips chips--sm detail__stats">
+              {p.facts.map((f) => (
+                <li key={f} className="chip chip--stat">
+                  {f}
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="detail__links">
             {p.links.map((l) => (
               <a key={l.href} className="btn btn--ghost btn--sm" href={l.href} target="_blank" rel="noreferrer">
@@ -113,6 +129,12 @@ export default function ProjectModal({ project, onClose, onZoom }) {
           </div>
         </div>
 
+        {/* AI 활용 방식 */}
+        {p.aiWorkflow && <AiWorkflow data={p.aiWorkflow} onZoom={onZoom} />}
+
+        {/* 핵심 기능 흐름 */}
+        {p.coreFlow && <CoreFlow data={p.coreFlow} onZoom={onZoom} />}
+
         {/* 시험 시스템 흐름 */}
         {p.examFlow && (
           <section className="detail__section">
@@ -172,6 +194,9 @@ export default function ProjectModal({ project, onClose, onZoom }) {
           </section>
         )}
 
+        {/* 데이터 · 동기화 구조 */}
+        {p.dataModel && <DataModel data={p.dataModel} onZoom={onZoom} />}
+
         {/* 트러블슈팅 */}
         {p.troubleshooting.length > 0 && (
           <section className="detail__section">
@@ -191,6 +216,9 @@ export default function ProjectModal({ project, onClose, onZoom }) {
             </div>
           </section>
         )}
+
+        {/* 검증 */}
+        {p.verification && <Verification data={p.verification} onZoom={onZoom} />}
 
         {/* 화면별 구현 */}
         <section className="detail__section">

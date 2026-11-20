@@ -2,6 +2,14 @@
 
 React + Vite로 만든 개인 포트폴리오 사이트입니다.
 
+## 담은 프로젝트
+
+| 프로젝트 | 내용 | 주요 기술 |
+|---|---|---|
+| **KHEDU** (파이널) | 학원 통합 관리 시스템 — 시험·과제·대시보드, ERD 설계 | Spring Boot, MyBatis, React, Oracle |
+| **KH웍스** (세미) | 사내 그룹웨어 — 일정·쪽지·결재 목록·관리자 기능 | Spring Boot, JSP, JDBC, Oracle |
+| **오운로그** (사이드) | 운동 기록 iOS·Android 앱 — App Store 출시, AI 주도 개발 | Swift, Kotlin, Firebase, Claude Code |
+
 ## 실행하기
 
 Node.js(20 이상)가 설치되어 있어야 합니다.
@@ -20,7 +28,7 @@ npm run dev     # http://localhost:5173 에서 확인
 | `src/data/profile.js` | 이름, 한 줄 소개, 핵심 역량, 기술 스택, 자격증, 교육, 연락처 |
 | `src/data/projects.js` | 프로젝트 개요, ERD 설명, 트러블슈팅, 화면별 설명, 회고 |
 
-이미지는 `public/images/khedu`(파이널), `public/images/khworks`(세미)에 있습니다.
+이미지는 `public/images/khedu`(파이널), `public/images/khworks`(세미), `public/images/ounlog`(사이드)에 있습니다.
 새 이미지를 넣으면 `projects.js`의 `images` 배열에 파일 이름을 추가하세요.
 
 ## 폴더 구조

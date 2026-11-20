@@ -8,7 +8,7 @@ export const profile = {
   // 한 줄 소개 (예시 문구 — 자유롭게 바꿔 쓰세요)
   headline: '사용자의 필요를 고민하고,\n설계부터 구현까지 연결하는 개발자',
   intro:
-    '기능을 만들기 전에 누가, 어떤 목적으로 쓰는지 먼저 고민합니다. 국비 과정의 두 팀 프로젝트에서 기능 제안부터 ERD 설계, Spring Boot 서버와 React 화면 구현까지 참여했습니다.',
+    '기능을 만들기 전에 누가, 어떤 목적으로 쓰는지 먼저 고민합니다. 국비 과정의 두 팀 프로젝트에서 ERD 설계부터 Spring Boot 서버와 React 화면까지 구현했고, 운동 기록 앱을 직접 개발해 App Store에 출시했습니다.',
   email: 'wjdduddnd0108@naver.com',
   github: 'https://github.com/wjdduddnd0108-ops',
 }
@@ -48,6 +48,10 @@ export const skills = [
     items: ['AWS EC2', 'Ubuntu Linux', 'Jenkins', 'Tomcat', 'Git / GitHub', 'STS4', 'VS Code', 'DBeaver'],
   },
   { group: 'Library · API', items: ['FullCalendar', 'Kakao Maps SDK'] },
+  {
+    group: 'App · AI',
+    items: ['Swift', 'SwiftUI', 'Kotlin', 'Jetpack Compose', 'Firebase', 'Claude Code', 'Codex'],
+  },
   { group: '추가 학습', note: '프로젝트 이후 별도로 학습', extra: true, items: ['Spring Data JPA'] },
 ]
 
