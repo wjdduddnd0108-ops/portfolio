@@ -393,10 +393,8 @@ export const projects = [
       'Firebase Auth', 'Cloud Firestore', 'Cloud Storage', 'Claude Code', 'Codex',
     ],
     roles: [
-      '화면 설계서 · 데이터 모델 문서 · 기술 결정 기록(ADR) 작성',
       'iOS 앱 구현 (Swift · SwiftUI)',
       'Android 앱 구현 (Kotlin · Jetpack Compose)',
-      'Firebase 인증 · Firestore · Storage 구성과 오프라인 저장 구조 설계',
       '단위 테스트 166개 작성, TestFlight 피드백 반영, App Store 심사 · 출시',
     ],
     links: [
